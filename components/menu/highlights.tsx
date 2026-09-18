@@ -19,18 +19,17 @@ export function Highlights({ highlights }: { highlights: HighlightView[] }) {
       aria-labelledby="highlights-title"
       className="scroll-mt-20 pt-10"
     >
-      <h2 id="highlights-title" className="font-heading text-3xl font-semibold">
+      <h2
+        id="highlights-title"
+        className="text-2xl font-semibold tracking-tight sm:text-3xl"
+      >
         Highlights
       </h2>
       <Tabs defaultValue={highlights[0].id} className="mt-4 gap-5">
         <div className="-mx-4 no-scrollbar overflow-x-auto px-4 sm:mx-0 sm:px-0">
-          <TabsList variant="line" className="w-max justify-start border-b p-0">
+          <TabsList className="w-max">
             {highlights.map((h) => (
-              <TabsTrigger
-                key={h.id}
-                value={h.id}
-                className="h-10 px-3 first:pl-0"
-              >
+              <TabsTrigger key={h.id} value={h.id}>
                 {h.name}
               </TabsTrigger>
             ))}
@@ -98,7 +97,7 @@ function HighlightRow({ highlight }: { highlight: HighlightView }) {
           </li>
         ))}
       </ul>
-      {/* Centered on the 4:3 photos of the w-52 cards: 156px tall, minus half a 36px button.
+      {/* Centered on the 4:3 photos of the w-52 cards: 156px tall, minus half a 32px button.
           z-20 lifts the buttons over the cards' click overlays (z-10). */}
       <div className="pointer-events-none absolute inset-x-0 top-15 z-20 hidden justify-between sm:flex">
         <Button

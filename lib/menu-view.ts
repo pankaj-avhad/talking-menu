@@ -2,7 +2,14 @@
 // serializable data, so client components can receive it as props.
 
 import { formatRange, groupWeeklyHours } from "@/lib/hours"
-import { fallbackImages, menu, type MenuItem, type Review } from "@/lib/menu"
+import {
+  fallbackImages,
+  itemOptions,
+  menu,
+  type MenuItem,
+  type Price,
+  type Review,
+} from "@/lib/menu"
 
 export type PhotoCredit = {
   photographer: string
@@ -20,11 +27,25 @@ export type MenuItemView = {
   rating: { likePercent: number; count: number } | null
   badges: string[]
   photo: ItemPhoto | null
-  /** DoorDash can't add it in one tap: ordering usually asks for a choice. */
-  hasChoices: boolean
+  /** Extras from the item's popup (data/item-options.json), all optional here. */
+  addOnGroups: AddOnGroupView[]
+  /** Other menu items the popup recommends with this one, in its order. */
+  goesWith: string[]
+  /** Add-on sets other customers ordered recently ("Ordered recently by 10+ others"). */
+  popularCombos: { label: string; addOns: string[]; price: string | null }[]
+  /** The popup takes a free-text request, e.g. "no cilantro". */
+  takesNote: boolean
   categoryId: string
   /** Highlight rows that include the item, with its rank in ranked rows. */
   highlights: { name: string; rank: number | null }[]
+}
+
+export type AddOnGroupView = {
+  id: string
+  name: string
+  /** "Optional", "Optional, up to 3". */
+  rule: string
+  options: { id: string; name: string; price: string | null }[]
 }
 
 export type CategoryView = {
@@ -100,7 +121,10 @@ export function getMenuPage() {
       timeZone,
       timeZoneName: timeZone ? timeZoneName(timeZone) : null,
       storeHours: restaurant.hours.store,
-      hoursByDay: groupWeeklyHours(restaurant.hours.store),
+      hoursByDay: groupWeeklyHours(restaurant.hours.store).map((group) => ({
+        days: plainDash(group.days),
+        ranges: group.ranges.map(plainDash),
+      })),
       rating: {
         average: restaurant.rating.average,
         count: restaurant.rating.count,
@@ -113,7 +137,9 @@ export function getMenuPage() {
       ),
     },
     menuName: extractedMenu?.name ?? source.menu_extracted.name ?? "Menu",
-    menuHours: extractedMenu?.hours ? formatRange(extractedMenu.hours) : null,
+    menuHours: extractedMenu?.hours
+      ? plainDash(formatRange(extractedMenu.hours))
+      : null,
     otherMenus: menu.menus
       .filter((m) => !m.extracted && m.name)
       .map((m) => m.name as string),
@@ -182,7 +208,7 @@ function toItemView(item: MenuItem): MenuItemView {
     },
     badges: item.badges,
     photo,
-    hasChoices: !item.quick_add_eligible,
+    ...optionsView(item),
     categoryId: item.category_id,
     highlights: menu.collections.flatMap((c) => {
       const index = c.item_ids.indexOf(item.id)
@@ -192,6 +218,69 @@ function toItemView(item: MenuItem): MenuItemView {
       ]
     }),
   }
+}
+
+/** The item's popup choices, from data/item-options.json. */
+function optionsView(item: MenuItem) {
+  const options = itemOptions[item.id]
+  const groups = options?.groups ?? []
+  const addOnGroups = groups
+    .filter((g) => g.kind === "add_on")
+    .map((g): AddOnGroupView => ({
+      id: g.id,
+      name: g.name,
+      rule:
+        g.min_choices > 0
+          ? `Pick ${g.min_choices}${g.max_choices > g.min_choices ? ` to ${g.max_choices}` : ""}`
+          : g.max_choices > 1
+            ? `Optional, up to ${g.max_choices}`
+            : "Optional",
+      options: g.options.map((o) => ({
+        id: o.id,
+        name: o.name.replace(/^Add\s+/i, ""),
+        price: priceText(o.price),
+      })),
+    }))
+  const goesWith = [
+    ...new Set(
+      groups
+        .filter((g) => g.kind === "upsell")
+        .flatMap((g) => g.options.map((o) => o.item_id))
+        .filter(
+          (id): id is string => !!id && id !== item.id && id in menu.items
+        )
+    ),
+  ]
+  const optionNames = new Map(
+    groups.flatMap((g) =>
+      g.options.map((o) => [o.id, o.name.replace(/^Add\s+/i, "")] as const)
+    )
+  )
+  const popularCombos = (options?.popular_combinations ?? []).map((combo) => ({
+    // "#1 • Ordered recently by 10+ others" -> "Ordered recently by 10+ others"
+    label: combo.label.replace(/^#\d+\s*•\s*/, ""),
+    addOns: combo.option_ids
+      .map((id) => optionNames.get(id))
+      .filter((n): n is string => !!n),
+    price: combo.price.display,
+  }))
+  return {
+    addOnGroups,
+    goesWith,
+    popularCombos: popularCombos.filter((c) => c.addOns.length > 0),
+    takesNote: options?.special_instructions != null,
+  }
+}
+
+/** "+$3.00"; null for free options. */
+function priceText(price: Price) {
+  if (!price.amount_cents) return null
+  return price.display ?? `+$${(price.amount_cents / 100).toFixed(2)}`
+}
+
+/** Pages show ranges as "11 AM - 2:15 PM", with a plain hyphen. */
+function plainDash(text: string) {
+  return text.replace(/\s*–\s*/g, " - ")
 }
 
 function toReviewView(

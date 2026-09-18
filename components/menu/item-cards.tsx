@@ -1,6 +1,5 @@
 "use client"
 
-import { Badge } from "@/components/ui/badge"
 import { ItemPhoto } from "@/components/menu/item-photo"
 import { LikeRating } from "@/components/menu/like-rating"
 import { useMenu } from "@/components/menu/menu-provider"
@@ -9,16 +8,21 @@ import type { MenuItemView } from "@/lib/menu-view"
 // Each card is one big click target: the button in the title stretches over the
 // whole card with ::after, so the name stays the button's accessible label.
 const stretchedButton =
-  "text-left outline-none after:absolute after:inset-0 after:z-10 focus-visible:after:ring-2 focus-visible:after:ring-ring focus-visible:after:ring-offset-2 focus-visible:after:ring-offset-background cursor-pointer"
+  "cursor-pointer text-left outline-none after:absolute after:inset-0 after:z-10 after:rounded-2xl focus-visible:after:ring-3 focus-visible:after:ring-ring/60"
+
+// Hover only zooms on devices that hover (Tailwind's hover: already checks),
+// and never with reduced motion.
+const photoZoom =
+  "transition-transform duration-300 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
 
 /** A menu row: name, description, price and labels, with a square photo on the right. */
 export function MenuItemRow({ item }: { item: MenuItemView }) {
   const { openItem } = useMenu()
 
   return (
-    <article className="group relative flex h-full gap-4 border-b py-5 transition-colors">
-      <div className="min-w-0 flex-1">
-        <h4 className="font-heading text-lg leading-snug font-semibold group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
+    <article className="group relative -mx-3 flex h-full gap-4 rounded-2xl p-3 transition-[background-color,transform] duration-150 ease-out hover:bg-muted has-[button:active]:scale-[0.99]">
+      <div className="min-w-0 flex-1 py-0.5">
+        <h4 className="leading-snug font-semibold">
           <button
             type="button"
             className={stretchedButton}
@@ -32,30 +36,29 @@ export function MenuItemRow({ item }: { item: MenuItemView }) {
             {item.description}
           </p>
         )}
-        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+        <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
           <span className="font-medium tabular-nums">{item.price}</span>
           {item.rating && <LikeRating rating={item.rating} />}
           {item.badges.map((badge) => (
-            <Badge key={badge} className="text-xs text-chili">
+            <span
+              key={badge}
+              className="rounded-full bg-brand/10 px-2 py-0.5 text-xs font-medium text-brand"
+            >
               {badge}
-            </Badge>
+            </span>
           ))}
-        </div>
+        </p>
       </div>
       {item.photo && (
-        <div className="relative size-24 shrink-0 overflow-hidden bg-muted sm:size-28">
-          <ItemPhoto
-            photo={item.photo}
-            sizes="112px"
-            className="transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-          />
+        <div className="relative size-24 shrink-0 overflow-hidden rounded-xl bg-muted sm:size-28">
+          <ItemPhoto photo={item.photo} sizes="112px" className={photoZoom} />
         </div>
       )}
     </article>
   )
 }
 
-/** A card in a highlight row: photo first, with the item's rank when the row is ranked. */
+/** A card in a highlight row: photo first, then the name (with its rank in ranked rows). */
 export function HighlightCard({
   item,
   rank,
@@ -66,25 +69,25 @@ export function HighlightCard({
   const { openItem } = useMenu()
 
   return (
-    <article className="group relative">
-      <div className="relative aspect-4/3 overflow-hidden bg-muted">
+    <article className="group relative transition-transform duration-150 ease-out has-[button:active]:scale-[0.98]">
+      <div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-muted">
         <ItemPhoto
           photo={item.photo}
           sizes="(min-width: 640px) 208px, 42vw"
-          className="transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          className={photoZoom}
         />
-        {rank && (
-          <span className="absolute top-2 left-2 bg-background/90 px-1.5 py-0.5 text-xs font-semibold tabular-nums">
-            <span className="sr-only">Rank </span>#{rank}
-          </span>
-        )}
       </div>
-      <h3 className="mt-3 line-clamp-2 leading-snug font-medium group-hover:underline group-hover:underline-offset-4">
+      <h3 className="mt-3 line-clamp-2 leading-snug font-semibold">
         <button
           type="button"
           className={stretchedButton}
           onClick={() => openItem(item.id)}
         >
+          {rank && (
+            <span className="mr-1 text-muted-foreground tabular-nums">
+              {rank}.
+            </span>
+          )}
           {item.name}
         </button>
       </h3>

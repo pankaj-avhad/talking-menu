@@ -168,20 +168,21 @@ function SectionLinks({
   return (
     <nav
       aria-label="Menu sections"
-      className={cn("flex min-w-0 flex-1 self-stretch", className)}
+      // md:-ml-3.5 lines the first pill's text up with the page edge.
+      className={cn("flex min-w-0 flex-1 md:-ml-3.5", className)}
     >
       <ul
         ref={scroller}
-        className="relative no-scrollbar flex min-w-0 flex-1 gap-5 overflow-x-auto"
+        className="relative no-scrollbar flex min-w-0 flex-1 items-center gap-1 overflow-x-auto py-1"
       >
         {sections.map((section) => (
-          <li key={section.id} className="flex shrink-0">
+          <li key={section.id} className="shrink-0">
             <a
               href={`#${section.id}`}
               data-section={section.id}
               aria-current={active === section.id ? "true" : undefined}
               onClick={(e) => onNavigate(e, section.id)}
-              className="relative -mx-1 flex items-center px-1 text-xs font-semibold tracking-wider whitespace-nowrap text-muted-foreground uppercase transition-colors outline-none after:absolute after:inset-x-1 after:bottom-0 after:h-0.5 after:bg-foreground after:opacity-0 after:transition-opacity hover:text-foreground focus-visible:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-inset aria-[current=true]:text-foreground aria-[current=true]:after:opacity-100"
+              className="flex h-9 items-center rounded-full px-3.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors duration-150 ease-out outline-none hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 aria-[current=true]:bg-foreground aria-[current=true]:text-background"
             >
               {section.label}
             </a>

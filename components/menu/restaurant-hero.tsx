@@ -1,102 +1,79 @@
 import Image from "next/image"
 import Link from "next/link"
-import { MapPinIcon, PhoneIcon, StarIcon } from "lucide-react"
+import { ArrowUpRightIcon, PhoneIcon, StarIcon } from "lucide-react"
 
 import { OpenStatus } from "@/components/menu/open-status"
 import { Button } from "@/components/ui/button"
 import type { MenuPage } from "@/lib/menu-view"
 
+/** Split hero: rating and hours, the name, one line about the food, and the call button. */
 export function RestaurantHero({
   restaurant,
+  summary,
 }: {
   restaurant: MenuPage["restaurant"]
+  /** e.g. "Vietnamese banh mi sandwiches, vermicelli noodle bowls and rice plates." */
+  summary: string
 }) {
-  const kicker = [restaurant.cuisine, restaurant.priceRange]
-    .filter(Boolean)
-    .join(" · ")
-
   return (
-    <header>
-      <div className="relative h-56 overflow-hidden bg-neutral-900 sm:h-80 lg:h-[26rem]">
+    <section
+      aria-labelledby="restaurant-name"
+      className="mx-auto grid max-w-6xl items-center gap-6 px-4 pt-4 sm:px-6 sm:pt-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-14 lg:pt-12"
+    >
+      <div className="relative aspect-video overflow-hidden rounded-2xl bg-muted lg:order-2 lg:aspect-[4/3] lg:rounded-3xl">
         {restaurant.headerImage && (
           <Image
             src={restaurant.headerImage}
-            alt=""
+            alt={`Dishes from ${restaurant.name}`}
             fill
             loading="eager"
             fetchPriority="high"
-            sizes="100vw"
+            sizes="(min-width: 1024px) 600px, 100vw"
             className="object-cover"
           />
         )}
-        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-black/0" />
-        <div className="absolute inset-x-0 bottom-0">
-          <div className="mx-auto flex max-w-6xl items-end gap-4 px-4 pb-5 sm:gap-6 sm:px-6 sm:pb-8">
-            {restaurant.logo && (
-              <Image
-                src={restaurant.logo}
-                alt={`${restaurant.name} logo`}
-                width={88}
-                height={88}
-                className="size-16 shrink-0 ring-1 ring-white/25 sm:size-22"
-              />
-            )}
-            <div className="min-w-0 text-white">
-              {kicker && (
-                <p className="text-xs font-semibold tracking-widest text-white/80 uppercase">
-                  {kicker}
-                </p>
-              )}
-              <h1 className="mt-1 font-heading text-3xl leading-tight font-semibold text-balance sm:text-5xl">
-                {restaurant.name}
-              </h1>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <div className="border-b">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-4 text-sm sm:px-6">
+      <div className="lg:order-1">
+        <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
           <span className="inline-flex items-center gap-1.5">
             <StarIcon aria-hidden className="size-4 fill-rating text-rating" />
             <span className="font-semibold">{restaurant.rating.average}</span>
             <span className="text-muted-foreground">
-              ({restaurant.rating.count.toLocaleString("en-US")} ratings)
+              {restaurant.rating.count.toLocaleString("en-US")} ratings
             </span>
           </span>
           <OpenStatus
             hours={restaurant.storeHours}
             timeZone={restaurant.timeZone}
           />
-          {restaurant.address && (
-            <a
-              href={restaurant.mapsUrl ?? undefined}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground hover:underline hover:underline-offset-4"
-            >
-              <MapPinIcon aria-hidden className="size-4" />
-              {restaurant.address}
-            </a>
-          )}
-          <Button asChild size="sm" className="sm:ml-auto">
+        </p>
+        <h1
+          id="restaurant-name"
+          className="mt-3 text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl"
+        >
+          {restaurant.name}
+        </h1>
+        <p className="mt-4 max-w-[46ch] text-base leading-relaxed text-pretty text-muted-foreground sm:text-lg">
+          {summary} Call and our AI host takes your order.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Button asChild size="lg" variant="brand">
             <Link href="/call">
               <PhoneIcon data-icon="inline-start" />
-              Order by voice
+              Call to order
             </Link>
           </Button>
+          {restaurant.mapsUrl && (
+            <Button asChild size="lg" variant="outline">
+              <a href={restaurant.mapsUrl} target="_blank" rel="noreferrer">
+                Directions
+                <ArrowUpRightIcon data-icon="inline-end" />
+              </a>
+            </Button>
+          )}
         </div>
-        {restaurant.tags.length > 0 && (
-          <ul
-            aria-label="Tags"
-            className="mx-auto flex max-w-6xl flex-wrap gap-x-4 gap-y-1 px-4 pb-4 text-xs font-semibold tracking-widest text-muted-foreground uppercase sm:px-6"
-          >
-            {restaurant.tags.map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
-        )}
       </div>
-    </header>
+    </section>
   )
 }

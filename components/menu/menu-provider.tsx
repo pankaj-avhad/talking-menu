@@ -110,6 +110,10 @@ export function MenuProvider({
         <ItemDialog
           item={item}
           category={categoriesById[item.categoryId]}
+          items={items}
+          // A dish picked from "Goes well with" replaces this one; focus still
+          // returns to whatever opened the dialog.
+          onSelectItem={(id) => setDialog({ id, open: true })}
           open={dialog.open}
           onOpenChange={(open) => setDialog((d) => ({ ...d, open }))}
           onCloseAutoFocus={(event) => {

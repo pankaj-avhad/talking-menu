@@ -54,9 +54,12 @@ export function MenuSections({
     <div ref={top} id="menu" className="scroll-mt-20">
       {!searching && <Highlights highlights={highlights} />}
 
-      <section aria-labelledby="menu-title" className="pt-14">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b-2 border-foreground pb-3">
-          <h2 id="menu-title" className="font-heading text-3xl font-semibold">
+      <section aria-labelledby="menu-title" className="pt-12">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+          <h2
+            id="menu-title"
+            className="text-2xl font-semibold tracking-tight sm:text-3xl"
+          >
             {menuName}
           </h2>
           {menuHours && (
@@ -65,7 +68,7 @@ export function MenuSections({
             </p>
           )}
         </div>
-        <p aria-live="polite" className="mt-3 text-sm text-muted-foreground">
+        <p aria-live="polite" className="mt-1 text-sm text-muted-foreground">
           {searching
             ? `${matchingIds.size} ${matchingIds.size === 1 ? "dish matches" : "dishes match"} “${query.trim()}”`
             : otherMenus.length > 0 &&
@@ -83,7 +86,7 @@ export function MenuSections({
         ))}
 
         {searching && shown.length === 0 && (
-          <Empty className="mt-8 border">
+          <Empty className="mt-8 rounded-2xl border">
             <EmptyHeader>
               <EmptyMedia variant="icon">
                 <SearchXIcon />
@@ -118,11 +121,11 @@ function CategorySection({
     <section
       id={`category-${category.id}`}
       aria-labelledby={titleId}
-      className="scroll-mt-20 pt-10"
+      className="scroll-mt-20 pt-9"
     >
       <h3
         id={titleId}
-        className="font-heading text-xl font-semibold tracking-wider uppercase"
+        className="text-lg font-semibold tracking-tight sm:text-xl"
       >
         {category.name}
       </h3>
@@ -131,7 +134,7 @@ function CategorySection({
           {category.description}
         </p>
       )}
-      <ul className="mt-2 grid gap-x-10 md:grid-cols-2">{children}</ul>
+      <ul className="mt-3 grid gap-x-8 gap-y-1 md:grid-cols-2">{children}</ul>
     </section>
   )
 }

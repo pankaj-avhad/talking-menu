@@ -16,15 +16,15 @@ export function Reviews({
     <section
       id="reviews"
       aria-labelledby="reviews-title"
-      className="scroll-mt-20 pt-16"
+      className="scroll-mt-20 pt-14"
     >
       <h2
         id="reviews-title"
-        className="border-b-2 border-foreground pb-3 font-heading text-3xl font-semibold"
+        className="text-2xl font-semibold tracking-tight sm:text-3xl"
       >
         Reviews
       </h2>
-      <div className="mt-8 grid gap-10 md:grid-cols-[14rem_minmax(0,1fr)]">
+      <div className="mt-6 grid gap-10 md:grid-cols-[14rem_minmax(0,1fr)]">
         <RatingSummary rating={rating} />
         <ul className="divide-y">
           {reviews.map((review) => (
@@ -112,7 +112,7 @@ function ReviewCard({ review }: { review: ReviewView }) {
         <div className="mt-1 flex items-center gap-3 text-xs">
           {review.stars !== null && <Stars count={review.stars} />}
           {review.reaction && (
-            <span className="font-semibold tracking-widest text-muted-foreground uppercase">
+            <span className="font-medium text-muted-foreground">
               {review.reaction}
             </span>
           )}

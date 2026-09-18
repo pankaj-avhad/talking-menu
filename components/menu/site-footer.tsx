@@ -5,7 +5,7 @@ export function SiteFooter({ page }: { page: MenuPage }) {
   const link = "underline underline-offset-4 hover:text-foreground"
 
   return (
-    <footer className="mt-8 border-t bg-muted/40">
+    <footer className="mt-12 border-t">
       <div className="mx-auto grid max-w-6xl gap-3 px-4 py-10 text-xs leading-relaxed text-muted-foreground sm:px-6">
         <p>
           Menu, prices and reviews from{" "}
@@ -51,7 +51,7 @@ export function SiteFooter({ page }: { page: MenuPage }) {
             .
           </p>
         )}
-        <p className="font-semibold tracking-widest text-foreground uppercase">
+        <p className="text-sm font-semibold tracking-tight text-foreground">
           Talking Menu
         </p>
       </div>

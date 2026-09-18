@@ -7,14 +7,22 @@ that will run on Vercel, and the voice relay that connects callers to the AI
 
 - **`/menu`**: the restaurant's menu, built from `data/menu.json`. It has
   highlight rows (Most Ordered, Featured, Most Liked), every category in
-  DoorDash's order, item details, search, opening hours, and reviews.
-  `/` redirects here. The page is static.
+  DoorDash's order, search, opening hours, and reviews. Each dish opens with
+  its add-ons and prices, "Goes well with" pairings and popular combinations
+  from `data/item-options.json`. `/` redirects here. The page is static.
 - **`/call`**: talk to the AI host from the browser, as on a phone call. It
   takes your name, remembers returning callers, takes the order with add-ons,
   suggests pairings, reads back the total, takes the address and places the
   order. The transcript and cart fill in live. Needs the relay (below).
 - **`/orders/[id]`**: the check a caller pays from, with a mock Pay button
   (no card is charged).
+- **`/calls`** and **`/calls/[callSid]`**: the staff dashboard. It lists
+  every caller and call with totals. Each call shows the speaker-labelled
+  transcript and what the host saved: the caller's record, the cart with
+  add-ons, the delivery address, the dishes it suggested, the hand-off reason
+  and summary, the order, and the raw record. It refreshes every few seconds,
+  so a live call's transcript fills in as it happens. Set
+  `DASHBOARD_PASSWORD` to put it behind a password.
 
 ## Run it
 
@@ -98,6 +106,8 @@ What testing showed, and what the code does about it:
 | `PUBLIC_APP_URL` | Where order links point. Browser calls default to the page that opened them. |
 | `RELAY_PORT`, `RELAY_ALLOWED_ORIGINS`, `MAX_BROWSER_CALLS`, `MAX_CALL_MINUTES` | Relay limits; see `.env.example`. |
 | `NEXT_PUBLIC_RELAY_URL` | Where `/call` finds the relay, read at build time. Default `ws://localhost:8787/browser`. |
+| `DASHBOARD_PASSWORD` | When set, `/calls` asks for it (any username). Unset, the dashboard is open. |
+| `DATA_DIR` | Where calls, customers and orders are saved. Default `.data/`. |
 
 Known limits:
 
@@ -147,7 +157,9 @@ is Next.js. Images come from DoorDash's CDN (`img.cdn4dd.com`) and Pexels, and
 they are resized by Vercel's image optimization. Both hosts are allowed in
 `next.config.ts`. `.vercelignore` keeps `.env` and `.data` out of CLI uploads.
 
-`/menu` works on Vercel as it is. Calls need two more things:
+`/menu` works on Vercel as it is. Set `DASHBOARD_PASSWORD` on any deployment
+other people can reach, since `/calls` shows callers' names, addresses and
+transcripts. Calls need two more things:
 
 - **An always-on host for the relay** (Railway, Render, Fly.io, or this
   machine behind ngrok). Vercel functions can't hold the call's WebSockets.
@@ -155,6 +167,17 @@ they are resized by Vercel's image optimization. Both hosts are allowed in
 - **A database behind `lib/store.ts`**. Vercel's file system is read-only, so
   orders and calls can't be JSON files there. The PRD picks Upstash Redis or
   Neon from the Vercel Marketplace.
+
+## Look and feel
+
+shadcn/ui's "nova" style with Geist, on neutral grays with one accent,
+`--brand` (basil green), for calling and "open" states. The tokens are in
+`app/globals.css` and were checked for WCAG AA contrast in light and dark mode.
+Buttons, inputs and tabs are pills; cards and dialogs are rounded-2xl. Motion
+is short and only on transform and opacity: buttons scale to 0.97 on press,
+hover effects only run on devices that hover, and everything that moves stops
+under reduced motion. `.claude/skills/` has the two design skills used
+(Emil Kowalski's design engineering, and Taste Skill).
 
 ## Next: phone calls (PRD milestones 3 and 4)
 
