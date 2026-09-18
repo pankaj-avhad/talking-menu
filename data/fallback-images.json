@@ -1,0 +1,29 @@
+{
+  "_about": "Pexels stock photos for menu items whose image_url is null in menu.json, keyed by item id. Written by scripts/fill-images.ts. Show the photographer credit wherever a photo is used.",
+  "items": {
+    "44374766520": {
+      "query": "Xiu Mai Banh Mi",
+      "url": "https://images.pexels.com/photos/13293882/pexels-photo-13293882.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "width": 1200,
+      "height": 627,
+      "alt": "A tasty banh mi sandwich with fresh herbs paired with iced coffee on a rustic wooden table.",
+      "avg_color": "#644A31",
+      "photographer": "Minh Nguyen",
+      "photographer_url": "https://www.pexels.com/@minh-nguyen-297239943",
+      "pexels_url": "https://www.pexels.com/photo/sandwich-and-glass-of-ice-cold-coffee-on-a-wooden-table-13293882/",
+      "fetched_on": "2026-09-18"
+    },
+    "10551604511": {
+      "query": "Pepsi Beverages",
+      "url": "https://images.pexels.com/photos/1292294/pexels-photo-1292294.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "width": 1200,
+      "height": 627,
+      "alt": "Refreshing Pepsi can held in hand on a sunny day. Perfect for advertisements.",
+      "avg_color": "#B8B8BD",
+      "photographer": "Martin  Péchy",
+      "photographer_url": "https://www.pexels.com/@martinpechy",
+      "pexels_url": "https://www.pexels.com/photo/person-holding-pepsi-can-1292294/",
+      "fetched_on": "2026-09-18"
+    }
+  }
+}

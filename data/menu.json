@@ -1,0 +1,1002 @@
+{
+  "_guide": {
+    "what_this_is": "Menu data for one restaurant, extracted from a saved DoorDash store page. Each menu item is stored exactly once in `items`; every other section refers to items by id.",
+    "how_to_read": [
+      "Look up any item with items[<item_id>]. Item ids are DoorDash's ids, always strings.",
+      "Build the menu page: loop over `categories` in array order, and for each id in category.item_ids read items[id]. That order matches DoorDash's menu.",
+      "Each item lives in exactly one category (item.category_id). Categories do not overlap.",
+      "Highlight rows (Most Ordered, Featured, Most Liked) are in `collections`. They reuse the same item ids as the categories, so the same item appears in several collections without being copied.",
+      "Find where an item appears: check category_id plus every collection whose item_ids contains the id."
+    ],
+    "sections": {
+      "source": "Where and when the data came from, and dedupe stats (listings_seen vs unique_items).",
+      "restaurant": "Store details: name, cuisine, tags, address with lat/lng, phone, rating with a 1-5 star breakdown, weekly hours, services offered, images, disclaimers.",
+      "menus": "Every menu the store has. extracted=true marks the one whose items are in this file. The others were not loaded on the saved page, so their items are missing.",
+      "categories": "Ordered array of {id, name, description, item_ids}. The category description often lists what comes with every item in it (e.g. banh mi toppings).",
+      "items": "Object keyed by item id: {id, name, description, category_id, price, image_url, rating, badges, quick_add_eligible}.",
+      "collections": "Ordered array of {id, name, description, source, item_ids}, rank order kept. ids: most_ordered, featured, most_liked.",
+      "reviews": "Public customer reviews shown on the page. mentioned_items links a phrase in the review to an item id. in_this_menu=false means the id is not in `items` (probably an item from another menu or an old version of the item)."
+    },
+    "field_notes": {
+      "price.amount_cents": "Integer in the smallest currency unit (1575 = 15.75). Use it for math.",
+      "price.display": "The price text exactly as DoorDash showed it.",
+      "image_url": "null when DoorDash has no photo for the item.",
+      "rating": "null when the item has no ratings. like_percent = share of raters who liked it; count = number of ratings. display is DoorDash's original text.",
+      "badges": "DoorDash labels such as '#1 Most liked'. Empty array when none.",
+      "quick_add_eligible": "DoorDash's flag for adding the item to the cart in one tap. false means the item popup has add-on groups (for example Add Fried Egg, Brown Rice, Vegetarian); at this store all of them are optional. 'Recommended ...' upsell groups do not affect it. The choices are in data/item-options.json, not in this file.",
+      "hours": "Keys are lowercase weekdays; an empty array means closed that day. `store` = the restaurant's own hours, `doordash_ordering` = when DoorDash accepts orders.",
+      "nulls": "Missing values are null, never empty strings."
+    },
+    "not_included": [
+      "Item options, add-ons and modifiers: DoorDash only loads them when an item popup is opened, so the saved store page does not have them. They are in data/item-options.json, written by scripts/extract_item_options.py from a browser capture of the popups.",
+      "Per-item 'goes well with' recommendations: the store page has none, but item popups offer 'Recommended ...' groups of other menu items. data/item-options.json has them as groups with kind 'upsell'. For other suggestions, use `collections` and other items in the same category.",
+      "Items from menus with extracted=false.",
+      "Viewer-specific data: delivery ETA, distance, fees, promos, and cart state."
+    ]
+  },
+  "source": {
+    "platform": "DoorDash",
+    "store_url": "https://www.doordash.com/store/tin-at-180-spear-st-san-francisco-26012/",
+    "saved_file": "Order Tin at 180 Spear St - San Francisco, CA Menu Delivery [Menu & Prices] _ San Francisco - DoorDash.html",
+    "extracted_on": "2026-09-18",
+    "menu_extracted": {
+      "id": "1795249",
+      "name": "Lunch Menu"
+    },
+    "listings_seen": 72,
+    "unique_items": 35
+  },
+  "restaurant": {
+    "id": "26012",
+    "name": "Tin at 180 Spear St",
+    "cuisine": "Vietnamese",
+    "tags": [
+      "Soup",
+      "Breakfast and Lunch",
+      "Vietnamese",
+      "Salad",
+      "Noodles",
+      "Sandwiches",
+      "Breakfast & Brunch",
+      "Vegetarian"
+    ],
+    "price_range": "$$",
+    "phone": "+14159348889",
+    "timezone": "US/Pacific",
+    "currency": "USD",
+    "address": {
+      "display": "180 Spear St, San Francisco, CA 94105, USA",
+      "street": "180 Spear Street",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "US",
+      "lat": 37.791431,
+      "lng": -122.392983
+    },
+    "rating": {
+      "average": 4.8,
+      "count": 2809,
+      "stars_breakdown": {
+        "1": 28,
+        "2": 14,
+        "3": 38,
+        "4": 236,
+        "5": 2438
+      }
+    },
+    "hours": {
+      "store": {
+        "monday": [
+          "11 AM - 2:15 PM"
+        ],
+        "tuesday": [
+          "11 AM - 2:15 PM"
+        ],
+        "wednesday": [
+          "11 AM - 2:15 PM"
+        ],
+        "thursday": [
+          "11 AM - 2:15 PM"
+        ],
+        "friday": [
+          "11 AM - 2:15 PM"
+        ],
+        "saturday": [],
+        "sunday": []
+      },
+      "doordash_ordering": {
+        "monday": [
+          "11 AM - 1:45 PM"
+        ],
+        "tuesday": [
+          "11 AM - 1:45 PM"
+        ],
+        "wednesday": [
+          "11 AM - 1:45 PM"
+        ],
+        "thursday": [
+          "11 AM - 1:45 PM"
+        ],
+        "friday": [
+          "11 AM - 1:45 PM"
+        ],
+        "saturday": [],
+        "sunday": []
+      }
+    },
+    "services": {
+      "delivery": true,
+      "pickup": true,
+      "group_order": true,
+      "scheduling": true,
+      "dashpass": true
+    },
+    "images": {
+      "cover": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/restaurant/cover/06529077-a7e8-4ade-b730-9c7778ed8da8.png",
+      "cover_square": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/restaurant/cover_square/e8e81804-c69e-4d15-b9ba-8ebcb3bc0b1b.png",
+      "header": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/store/header/a7ebbddb-2cbc-4fee-a573-b8f088ed7587.jpg",
+      "gallery": [
+        "https://img.cdn4dd.com/u/media/34fc6f56-7ac5-4bda-82a6-d7a03a4770fd.jpg",
+        "https://img.cdn4dd.com/u/media/269e0286-310a-4e24-9c63-eebf977af18a.jpg",
+        "https://img.cdn4dd.com/u/media/0bca9ed1-1018-4a20-9ad4-b7cb0978421d.jpg",
+        "https://img.cdn4dd.com/u/media/e477f588-a470-441a-9b1a-0736838f18db.jpg"
+      ]
+    },
+    "disclaimers": [
+      "Prices on this menu are set directly by the Merchant."
+    ]
+  },
+  "menus": [
+    {
+      "id": "1795248",
+      "name": "Dinner Menu",
+      "hours": "Closed",
+      "extracted": false
+    },
+    {
+      "id": "1795249",
+      "name": "Lunch Menu",
+      "hours": "11:00 AM - 1:45 PM",
+      "extracted": true
+    }
+  ],
+  "categories": [
+    {
+      "id": "21446661",
+      "name": "Banh Mi Sandwiches",
+      "description": "served with pickled veggies (daikon, carrots & red onions), cucumber, jalapeños, cilantro, thai basil, house-made aioli, french baguette",
+      "item_ids": [
+        "2819350429",
+        "2819348000",
+        "2819350971",
+        "214088526",
+        "44374766520",
+        "2819349116",
+        "2819351546",
+        "2819352351"
+      ]
+    },
+    {
+      "id": "21446658",
+      "name": "Vermicelli Noodle Bowls",
+      "description": "served with vermicelli noodles, red leaf lettuce, cucumber, bean sprouts, pickled carrot & daikon",
+      "item_ids": [
+        "214088500",
+        "214088502",
+        "214088499",
+        "214088496",
+        "214088501",
+        "214088497",
+        "214088498",
+        "214088495"
+      ]
+    },
+    {
+      "id": "21446659",
+      "name": "Rice Plates",
+      "description": null,
+      "item_ids": [
+        "214088508",
+        "214088507",
+        "214088503",
+        "214088509",
+        "214088513",
+        "2819335062",
+        "214088512"
+      ]
+    },
+    {
+      "id": "21446662",
+      "name": "Rolls, Salads, etc",
+      "description": null,
+      "item_ids": [
+        "214088540",
+        "214088538",
+        "214088539",
+        "3343595227",
+        "214088535"
+      ]
+    },
+    {
+      "id": "21446657",
+      "name": "Sides",
+      "description": null,
+      "item_ids": [
+        "2819357496",
+        "2819357048"
+      ]
+    },
+    {
+      "id": "21446656",
+      "name": "Dessert",
+      "description": null,
+      "item_ids": [
+        "214088491"
+      ]
+    },
+    {
+      "id": "21446655",
+      "name": "Beverages",
+      "description": null,
+      "item_ids": [
+        "10547675643",
+        "10551604511",
+        "214088542",
+        "214088541"
+      ]
+    }
+  ],
+  "items": {
+    "214088540": {
+      "id": "214088540",
+      "name": "Hue Rolls",
+      "description": "Grilled lemongrass pork, shiso, mint, cilantro, fried shallots, and steamed rice paper. Served with nuoc cham dipping sauce",
+      "category_id": "21446662",
+      "price": {
+        "amount_cents": 1575,
+        "currency": "USD",
+        "display": "$15.75"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/8ad39ff1-54f1-43d7-96eb-2ca9b98a1b02-retina-large-jpeg",
+      "rating": {
+        "like_percent": 100,
+        "count": 100,
+        "display": "100% (100)"
+      },
+      "badges": [
+        "#1 Most liked"
+      ],
+      "quick_add_eligible": false
+    },
+    "214088508": {
+      "id": "214088508",
+      "name": "5-Spice Chicken",
+      "description": "Served with jasmine rice.",
+      "category_id": "21446659",
+      "price": {
+        "amount_cents": 1680,
+        "currency": "USD",
+        "display": "$16.80"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/90ca8b80-070b-47c5-b98e-a5db810884c1-retina-large.jpg",
+      "rating": {
+        "like_percent": 96,
+        "count": 75,
+        "display": "96% (75)"
+      },
+      "badges": [
+        "#2 Most liked"
+      ],
+      "quick_add_eligible": false
+    },
+    "214088502": {
+      "id": "214088502",
+      "name": "Bun Thit Nuong",
+      "description": "Grilled lemongrass pork shoulder. Served with cucumber, lettuce, bean sprouts, pickled daikon and carrots, and peanuts.",
+      "category_id": "21446658",
+      "price": {
+        "amount_cents": 1785,
+        "currency": "USD",
+        "display": "$17.85"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/8bbb8d98-8497-4cc2-9746-daf34d6e002e-retina-large.jpg",
+      "rating": {
+        "like_percent": 100,
+        "count": 60,
+        "display": "100% (60)"
+      },
+      "badges": [
+        "#3 Most liked"
+      ],
+      "quick_add_eligible": false
+    },
+    "214088500": {
+      "id": "214088500",
+      "name": "5-Spice Chicken Bun",
+      "description": "5-Spice marinated Skin-on boneless chicken thigh. Served with cucumber, lettuce, bean sprouts, pickled daikon and carrots, and peanuts.",
+      "category_id": "21446658",
+      "price": {
+        "amount_cents": 1785,
+        "currency": "USD",
+        "display": "$17.85"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/ugc/09d2fccc-ac7f-45a1-8adc-dad1ba456210.jpg",
+      "rating": {
+        "like_percent": 100,
+        "count": 28,
+        "display": "100% (28)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "2819350429": {
+      "id": "2819350429",
+      "name": "5-Spice Chicken Banh Mi",
+      "description": "Marinated skin-on boneless chicken thigh, house 5-spice reduction",
+      "category_id": "21446661",
+      "price": {
+        "amount_cents": 1630,
+        "currency": "USD",
+        "display": "$16.30"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/ugc/c8d550de-81e4-4866-97a8-08a18de74e8d.jpg",
+      "rating": {
+        "like_percent": 100,
+        "count": 34,
+        "display": "100% (34)"
+      },
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "2819348000": {
+      "id": "2819348000",
+      "name": "Grilled Pork Banh Mi",
+      "description": "Lemongrass-marinated pork shoulder",
+      "category_id": "21446661",
+      "price": {
+        "amount_cents": 1630,
+        "currency": "USD",
+        "display": "$16.30"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/ugc/a9153408-feee-479d-b5fa-3d4db6f45408.jpg",
+      "rating": {
+        "like_percent": 85,
+        "count": 14,
+        "display": "85% (14)"
+      },
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "214088538": {
+      "id": "214088538",
+      "name": "Spring Rolls",
+      "description": "Poached pork and shrimp, vermicelli, mint, and peanut dipping sauce.",
+      "category_id": "21446662",
+      "price": {
+        "amount_cents": 1470,
+        "currency": "USD",
+        "display": "$14.70"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/f9ee3f67-756c-4eaf-953b-69708503dfc0-retina-large-jpeg",
+      "rating": {
+        "like_percent": 100,
+        "count": 37,
+        "display": "100% (37)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "214088542": {
+      "id": "214088542",
+      "name": "Vietnamese Iced Coffee",
+      "description": "Slow-Drip coffee served with condensed milk over ice",
+      "category_id": "21446655",
+      "price": {
+        "amount_cents": 550,
+        "currency": "USD",
+        "display": "$5.50"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photosV2/e96f9f03-1ab8-4bea-bd0f-4173563d512e-retina-large.jpeg",
+      "rating": {
+        "like_percent": 100,
+        "count": 11,
+        "display": "100% (11)"
+      },
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "214088507": {
+      "id": "214088507",
+      "name": "Lemongrass Pork Shoulder",
+      "description": "Served with jasmine rice.",
+      "category_id": "21446659",
+      "price": {
+        "amount_cents": 1680,
+        "currency": "USD",
+        "display": "$16.80"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/ugc/c157f9fc-a1bb-4078-86cd-12275055b88c.jpg",
+      "rating": {
+        "like_percent": 100,
+        "count": 17,
+        "display": "100% (17)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "214088541": {
+      "id": "214088541",
+      "name": "Thai Iced Tea",
+      "description": "Spiced black tea served with milk over ice",
+      "category_id": "21446655",
+      "price": {
+        "amount_cents": 550,
+        "currency": "USD",
+        "display": "$5.50"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photosV2/e96f9f03-1ab8-4bea-bd0f-4173563d512e-retina-large.jpeg",
+      "rating": {
+        "like_percent": 95,
+        "count": 22,
+        "display": "95% (22)"
+      },
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "214088503": {
+      "id": "214088503",
+      "name": "Lemongrass Tofu",
+      "description": "Sautéed shitake mushrooms and vegetables. Served with jasmine rice.",
+      "category_id": "21446659",
+      "price": {
+        "amount_cents": 1680,
+        "currency": "USD",
+        "display": "$16.80"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/029b3253-d2be-477b-bd29-e201e6019c2c-retina-large.jpg",
+      "rating": {
+        "like_percent": 70,
+        "count": 10,
+        "display": "70% (10)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "214088497": {
+      "id": "214088497",
+      "name": "Vegetarian Bun",
+      "description": "Sautéed lemongrass tofu, shitake mushrooms, and soy vinaigrette. Served with cucumber, lettuce, bean sprouts, pickled daikon and carrots, and peanuts.",
+      "category_id": "21446658",
+      "price": {
+        "amount_cents": 1785,
+        "currency": "USD",
+        "display": "$17.85"
+      },
+      "image_url": "https://img.cdn4dd.com/p/fit=contain,width=1200,height=672,format=auto/media/yelp/09c87999-2c30-4f65-975e-746cd4f573dc.jpg",
+      "rating": {
+        "like_percent": 100,
+        "count": 11,
+        "display": "100% (11)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "2819350971": {
+      "id": "2819350971",
+      "name": "Grilled Ribeye Banh Mi",
+      "description": "Mai-que-lo marinated and grilled rib-eye",
+      "category_id": "21446661",
+      "price": {
+        "amount_cents": 1890,
+        "currency": "USD",
+        "display": "$18.90"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/9e7ffc22-da26-4a75-9f1d-f85ac6ac1d35-retina-large.jpg",
+      "rating": null,
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "214088526": {
+      "id": "214088526",
+      "name": "Combo Banh Mi",
+      "description": "Pork Sausage and house-made pate",
+      "category_id": "21446661",
+      "price": {
+        "amount_cents": 1630,
+        "currency": "USD",
+        "display": "$16.30"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/9e7ffc22-da26-4a75-9f1d-f85ac6ac1d35-retina-large.jpg",
+      "rating": {
+        "like_percent": 100,
+        "count": 11,
+        "display": "100% (11)"
+      },
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "44374766520": {
+      "id": "44374766520",
+      "name": "Xiu Mai Banh Mi",
+      "description": "Spicy house-made pork meatballs",
+      "category_id": "21446661",
+      "price": {
+        "amount_cents": 1680,
+        "currency": "USD",
+        "display": "$16.80"
+      },
+      "image_url": null,
+      "rating": null,
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "2819349116": {
+      "id": "2819349116",
+      "name": "Xa Xiu Pork Banh Mi",
+      "description": "Braised xa xiu pork belly, pork sausage, house 5-spice reduction",
+      "category_id": "21446661",
+      "price": {
+        "amount_cents": 1630,
+        "currency": "USD",
+        "display": "$16.30"
+      },
+      "image_url": "https://img.cdn4dd.com/p/fit=contain,width=1200,height=672,format=auto/media/yelp/8af1ea4e-508a-4db0-b7ba-9590b41f62cb.jpg",
+      "rating": {
+        "like_percent": 85,
+        "count": 7,
+        "display": "85% (7)"
+      },
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "2819351546": {
+      "id": "2819351546",
+      "name": "Turmeric Catfish Banh Mi",
+      "description": "Turmeric & galangal marinated catfish with dill",
+      "category_id": "21446661",
+      "price": {
+        "amount_cents": 1785,
+        "currency": "USD",
+        "display": "$17.85"
+      },
+      "image_url": "https://img.cdn4dd.com/p/fit=contain,width=1200,height=672,format=auto/media/yelp/9ab0ce89-69a9-42b5-83bb-c6792ea8dd7b.jpeg",
+      "rating": null,
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "2819352351": {
+      "id": "2819352351",
+      "name": "Lemongrass Tofu Banh Mi",
+      "description": "Sautéed lemongrass tofu with shiitake mushrooms & onions",
+      "category_id": "21446661",
+      "price": {
+        "amount_cents": 1630,
+        "currency": "USD",
+        "display": "$16.30"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/9e7ffc22-da26-4a75-9f1d-f85ac6ac1d35-retina-large.jpg",
+      "rating": null,
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "214088499": {
+      "id": "214088499",
+      "name": "Bun Bo Nuong",
+      "description": "Mai-que-lo marinated ribeye slices with sesame seeds. Served with cucumber, lettuce, bean sprouts, pickled daikon and carrots, and peanuts.",
+      "category_id": "21446658",
+      "price": {
+        "amount_cents": 2050,
+        "currency": "USD",
+        "display": "$20.50"
+      },
+      "image_url": "https://img.cdn4dd.com/p/fit=contain,width=1200,height=672,format=auto/media/yelp/18d8268a-d887-4db5-96b5-c5147e4f7cf8.jpg",
+      "rating": {
+        "like_percent": 100,
+        "count": 16,
+        "display": "100% (16)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "214088496": {
+      "id": "214088496",
+      "name": "Cha Ca La Vong",
+      "description": "Turmeric-marinated catfish, dill, and shrimp-paste sauce. Served with cucumber, lettuce, bean sprouts, pickled daikon and carrots, and peanuts.",
+      "category_id": "21446658",
+      "price": {
+        "amount_cents": 1995,
+        "currency": "USD",
+        "display": "$19.95"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/5d30c7f0-203f-406e-b512-457d9171f9e4-retina-large-jpeg",
+      "rating": {
+        "like_percent": 97,
+        "count": 37,
+        "display": "97% (37)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "214088501": {
+      "id": "214088501",
+      "name": "Bun Tom",
+      "description": "Grilled shrimp. Served with cucumber, lettuce, bean sprouts, pickled daikon and carrots, and peanuts.",
+      "category_id": "21446658",
+      "price": {
+        "amount_cents": 1995,
+        "currency": "USD",
+        "display": "$19.95"
+      },
+      "image_url": "https://img.cdn4dd.com/p/fit=contain,width=1200,height=672,format=auto/media/yelp/66b5381f-c900-44b9-b66c-49378554f78c.jpg",
+      "rating": null,
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "214088498": {
+      "id": "214088498",
+      "name": "Bun Ga Xa",
+      "description": "Sautéed lemongrass-chili chicken thigh. Served with cucumber, lettuce, bean sprouts, pickled daikon and carrots, and peanuts.",
+      "category_id": "21446658",
+      "price": {
+        "amount_cents": 1785,
+        "currency": "USD",
+        "display": "$17.85"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/ugc/edaff60c-d20d-443a-99ed-2852438da867.jpg",
+      "rating": {
+        "like_percent": 100,
+        "count": 12,
+        "display": "100% (12)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "214088495": {
+      "id": "214088495",
+      "name": "Bun Cha Ha Noi",
+      "description": "Grilled pork patties and pork shoulder, fresh herbs, and vermicelli noodles. Served with cucumber, lettuce, bean sprouts, pickled daikon and carrots, and peanuts.",
+      "category_id": "21446658",
+      "price": {
+        "amount_cents": 1995,
+        "currency": "USD",
+        "display": "$19.95"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/684d5616-00dd-451a-b6e5-b4bc7d73db3e-retina-large-jpeg",
+      "rating": {
+        "like_percent": 93,
+        "count": 16,
+        "display": "93% (16)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "214088509": {
+      "id": "214088509",
+      "name": "Chili-Lemongrass Chicken",
+      "description": "Served with jasmine rice.",
+      "category_id": "21446659",
+      "price": {
+        "amount_cents": 1680,
+        "currency": "USD",
+        "display": "$16.80"
+      },
+      "image_url": "https://img.cdn4dd.com/p/fit=contain,width=1200,height=672,format=auto/media/yelp/a6faa365-ed70-49c9-820f-2af304a5fca2-9026c6c5-9d0f-40b9-83b5-95f6e4d6f3e8.jpg",
+      "rating": {
+        "like_percent": 100,
+        "count": 14,
+        "display": "100% (14)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "214088513": {
+      "id": "214088513",
+      "name": "Caramelized Claypot Catfish",
+      "description": "Served with jasmine rice",
+      "category_id": "21446659",
+      "price": {
+        "amount_cents": 1890,
+        "currency": "USD",
+        "display": "$18.90"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/99d66be6-60f6-4ad1-89cf-bc6535c71279-retina-large.jpg",
+      "rating": {
+        "like_percent": 85,
+        "count": 21,
+        "display": "85% (21)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "2819335062": {
+      "id": "2819335062",
+      "name": "Grilled Ribeye",
+      "description": "Mai-que-lo marinated and grilled rib-eye with sesame seeds",
+      "category_id": "21446659",
+      "price": {
+        "amount_cents": 1945,
+        "currency": "USD",
+        "display": "$19.45"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/90ca8b80-070b-47c5-b98e-a5db810884c1-retina-large.jpg",
+      "rating": {
+        "like_percent": 90,
+        "count": 10,
+        "display": "90% (10)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "214088512": {
+      "id": "214088512",
+      "name": "Caramelized Claypot Shrimp",
+      "description": "Served with jasmine rice.",
+      "category_id": "21446659",
+      "price": {
+        "amount_cents": 1890,
+        "currency": "USD",
+        "display": "$18.90"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/99d66be6-60f6-4ad1-89cf-bc6535c71279-retina-large.jpg",
+      "rating": {
+        "like_percent": 100,
+        "count": 7,
+        "display": "100% (7)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "214088539": {
+      "id": "214088539",
+      "name": "Cha Gio",
+      "description": "Crispy-fried rolls with pork, shrimp, jicama, taro, woodear mushrooms, and glass noodles. Served with lettuce, fresh herbs, peanuts  and  nuoc cham dipping sauce",
+      "category_id": "21446662",
+      "price": {
+        "amount_cents": 1575,
+        "currency": "USD",
+        "display": "$15.75"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/d2888378-dce2-48f2-918c-b727f7b75a77-retina-large-jpeg",
+      "rating": {
+        "like_percent": 98,
+        "count": 50,
+        "display": "98% (50)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "3343595227": {
+      "id": "3343595227",
+      "name": "Tin Rolls",
+      "description": "Grilled lemongrass pork, boiled egg, shiso, mint, cilantro, shallots, fried lumpia skin, rice paper, nuoc cham dipping sauce with peanuts",
+      "category_id": "21446662",
+      "price": {
+        "amount_cents": 1575,
+        "currency": "USD",
+        "display": "$15.75"
+      },
+      "image_url": "https://img.cdn4dd.com/p/fit=contain,width=1200,height=672,format=auto/media/yelp/45883b5c-5a02-411a-a277-2da36efa4fe1.jpg",
+      "rating": null,
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "214088535": {
+      "id": "214088535",
+      "name": "Papaya Salad",
+      "description": "Green papaya, poached shrimp and calamari, Thai basil, and peanuts.",
+      "category_id": "21446662",
+      "price": {
+        "amount_cents": 1630,
+        "currency": "USD",
+        "display": "$16.30"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/05c62163-9543-4f16-abe2-80341fecda74-retina-large-jpeg",
+      "rating": {
+        "like_percent": 86,
+        "count": 15,
+        "display": "86% (15)"
+      },
+      "badges": [],
+      "quick_add_eligible": false
+    },
+    "2819357496": {
+      "id": "2819357496",
+      "name": "Side Brown Rice",
+      "description": "Steamed brown rice",
+      "category_id": "21446657",
+      "price": {
+        "amount_cents": 400,
+        "currency": "USD",
+        "display": "$4.00"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/9cab27f3-051c-40d2-a630-8dbbef4265fd-retina-large.jpg",
+      "rating": null,
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "2819357048": {
+      "id": "2819357048",
+      "name": "Side Jasmine Rice",
+      "description": "Steamed Jasmine rice",
+      "category_id": "21446657",
+      "price": {
+        "amount_cents": 350,
+        "currency": "USD",
+        "display": "$3.50"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/9cab27f3-051c-40d2-a630-8dbbef4265fd-retina-large.jpg",
+      "rating": null,
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "214088491": {
+      "id": "214088491",
+      "name": "Vietnamese Banana Cake",
+      "description": "Pain perdu, bananas, rum, coconut cream and peanuts.",
+      "category_id": "21446656",
+      "price": {
+        "amount_cents": 785,
+        "currency": "USD",
+        "display": "$7.85"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photos/99436f68-d466-4d1b-9947-f39c202b79f6-retina-large-jpeg",
+      "rating": {
+        "like_percent": 72,
+        "count": 11,
+        "display": "72% (11)"
+      },
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "10547675643": {
+      "id": "10547675643",
+      "name": "Diet Pepsi",
+      "description": "A crisp, refreshing taste you know and love with zero calories.",
+      "category_id": "21446655",
+      "price": {
+        "amount_cents": 400,
+        "currency": "USD",
+        "display": "$4.00"
+      },
+      "image_url": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photosV2/6467a255-9545-41fa-8041-60a491d4cc9e-retina-large.PNG",
+      "rating": null,
+      "badges": [],
+      "quick_add_eligible": true
+    },
+    "10551604511": {
+      "id": "10551604511",
+      "name": "Pepsi",
+      "description": "The cold, refreshing, sparkling classic that America loves.",
+      "category_id": "21446655",
+      "price": {
+        "amount_cents": 400,
+        "currency": "USD",
+        "display": "$4.00"
+      },
+      "image_url": null,
+      "rating": null,
+      "badges": [],
+      "quick_add_eligible": true
+    }
+  },
+  "collections": [
+    {
+      "id": "most_ordered",
+      "name": "Most Ordered",
+      "description": "The most commonly ordered items and dishes from this store",
+      "source": "DoorDash 'Most Ordered' section, in DoorDash's rank order",
+      "item_ids": [
+        "214088540",
+        "214088508",
+        "214088502",
+        "214088500",
+        "2819350429",
+        "2819348000",
+        "214088538",
+        "214088542",
+        "214088507",
+        "214088541",
+        "214088503",
+        "214088497"
+      ]
+    },
+    {
+      "id": "featured",
+      "name": "Featured Items",
+      "description": null,
+      "source": "DoorDash 'Featured Items' carousel (recommended_items_for_you), in display order",
+      "item_ids": [
+        "214088500",
+        "214088508",
+        "214088502",
+        "214088498",
+        "214088507",
+        "214088503",
+        "2819350429",
+        "214088509",
+        "2819335062",
+        "214088499",
+        "214088496",
+        "214088540",
+        "2819352351",
+        "214088513",
+        "214088497",
+        "214088538",
+        "214088501",
+        "214088535",
+        "2819351546",
+        "214088495",
+        "2819348000",
+        "2819350971",
+        "214088526",
+        "214088539",
+        "2819349116"
+      ]
+    },
+    {
+      "id": "most_liked",
+      "name": "Most Liked",
+      "description": null,
+      "source": "Derived from the '#N Most liked' item badges, ordered by N",
+      "item_ids": [
+        "214088540",
+        "214088508",
+        "214088502"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "reviewer": "Marie O",
+      "stars": 5,
+      "reviewed_at": "2021-10-24T03:35:01.241Z",
+      "reaction": "Loved",
+      "text": "It was a wonderful surprise , the beef pho had a good flavor ,  and the noodle was very fresh . It was very delicious .\nThe hue rolls and egg rolls were really good .\nOver all , everything was over the top and above all , the representation was nice .",
+      "mentioned_items": [
+        {
+          "item_id": "214088488",
+          "text": "hue rolls",
+          "in_this_menu": false
+        }
+      ]
+    },
+    {
+      "reviewer": "Talita R",
+      "stars": 5,
+      "reviewed_at": "2026-03-26T02:08:49.373Z",
+      "reaction": "Loved",
+      "text": "They ran out of the 5-spice chicken banh mi and called to inform me, so I ordered the catfish instead. It turned out to be a fortunate choice because it was simply delicious! I loved the fresh bread, and the fish was very flavorful.",
+      "mentioned_items": []
+    },
+    {
+      "reviewer": "Briana K",
+      "stars": 4,
+      "reviewed_at": "2026-01-13T19:57:08.577Z",
+      "reaction": "Liked",
+      "text": "The 5 spice chicken is incredible and I appreciate the romaine lettuce and pickled veggies in the vermicelli bowl. Huge portions, two meals for the price of one. This is my go-to lunch out!",
+      "mentioned_items": []
+    },
+    {
+      "reviewer": "Ziyi G",
+      "stars": 1,
+      "reviewed_at": "2022-08-24T20:13:28.700Z",
+      "reaction": "Didn't like",
+      "text": "If you order the clay pot fish, you will get only 1/4 cup of tiny portion with mostly onions. Two bites of food for the price is horrendous. Will not order from this place again",
+      "mentioned_items": []
+    },
+    {
+      "reviewer": "Jason L",
+      "stars": 5,
+      "reviewed_at": "2026-07-22T04:57:11.556Z",
+      "reaction": "Loved",
+      "text": "Both hue rolls and chicken 5-Spice Chicken Banh Mi were so good and I will reorder both. The portions were also very generous.",
+      "mentioned_items": [
+        {
+          "item_id": "2819350429",
+          "text": "5-Spice Chicken Banh Mi",
+          "in_this_menu": true
+        }
+      ]
+    }
+  ]
+}

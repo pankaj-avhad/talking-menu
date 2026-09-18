@@ -5,3 +5,20 @@ node_modules/
 __pycache__/
 .venv/
 .DS_Store
+
+# call records, customers and orders written by the relay
+/.data/
+
+# next.js
+/.next/
+/out/
+/build
+next-env.d.ts
+*.tsbuildinfo
+
+# vercel
+.vercel
+
+# misc
+*.pem
+npm-debug.log*

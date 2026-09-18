@@ -1,0 +1,8 @@
+# Keep secrets and local Python caches out of `vercel deploy` uploads.
+# The site needs no environment variables at runtime.
+.env
+.env.*
+!.env.example
+.venv
+__pycache__
+.data

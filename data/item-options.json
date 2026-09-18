@@ -1,0 +1,5034 @@
+{
+  "_about": {
+    "what_this_is": "The choices in each DoorDash item popup, keyed by menu item id (the ids in menu.json). menu.json does not have them because DoorDash loads them only when an item is clicked. Written by scripts/extract_item_options.py from a browser capture of those popups.",
+    "prices": "Pickup prices, the same as menu.json. price.display is the popup's text, e.g. '+$3.00'.",
+    "groups": "In popup order. kind 'add_on' = extras for this dish (for example Add Fried Egg, Brown Rice, Vegetarian). kind 'upsell' = other menu items offered with this one ('Recommended Beverages'); each such option has item_id set and costs the same as ordering that item on its own.",
+    "choices": "Pick between min_choices and max_choices options from a group, each option at most once. min_choices 0 = optional. rule_text is the popup's own wording ('Select up to 3'), null when it shows none.",
+    "has_sub_options": "The option opens its own choices. For an upsell option those are the linked item's groups here (items[item_id]).",
+    "popular_combinations": "DoorDash's 'Your recommended options': add-on sets other customers ordered recently. option_ids point at options in this item's groups; price.display is the total with them.",
+    "special_instructions": "Free-text field on the popup, with its max length. null when the popup has none.",
+    "not_included": [
+      "Delivery prices (about 10% higher).",
+      "DoorDash's 'If item is unavailable' setting, which is a DoorDash feature, not a restaurant option."
+    ]
+  },
+  "source": {
+    "platform": "DoorDash",
+    "store_url": "https://www.doordash.com/store/tin-at-180-spear-st-san-francisco-26012/1795249/",
+    "captured_file": "doordash-item-pages-pickup.json",
+    "fulfillment": "pickup",
+    "extracted_on": "2026-09-18"
+  },
+  "items": {
+    "214088540": {
+      "name": "Hue Rolls",
+      "groups": [
+        {
+          "id": "4445444538",
+          "name": "Vegetarian Option",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": "Select up to 1",
+          "options": [
+            {
+              "id": "15020161598",
+              "item_id": null,
+              "name": "Vegetarian",
+              "price": {
+                "amount_cents": 0,
+                "currency": "USD",
+                "display": null
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088538",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088538",
+              "item_id": "214088538",
+              "name": "Spring Rolls",
+              "price": {
+                "amount_cents": 1470,
+                "currency": "USD",
+                "display": "+$14.70"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088508": {
+      "name": "5-Spice Chicken",
+      "groups": [
+        {
+          "id": "428258077",
+          "name": "Rice plate additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "2406044912",
+              "item_id": null,
+              "name": "Add Fried Egg",
+              "price": {
+                "amount_cents": 300,
+                "currency": "USD",
+                "display": "+$3.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044911",
+              "item_id": null,
+              "name": "Add Cha Gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "15019006796",
+              "item_id": null,
+              "name": "Add Veg Cha gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "428258006",
+          "name": "Rice Option",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": "Select up to 1",
+          "options": [
+            {
+              "id": "2406044824",
+              "item_id": null,
+              "name": "Brown Rice",
+              "price": {
+                "amount_cents": 100,
+                "currency": "USD",
+                "display": "+$1.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [
+        {
+          "label": "#1 • Ordered recently by 10+ others",
+          "option_ids": [
+            "2406044912",
+            "2406044824"
+          ],
+          "price": {
+            "amount_cents": 2080,
+            "currency": "USD",
+            "display": "$20.80"
+          }
+        },
+        {
+          "label": "#2 • Ordered recently by 10+ others",
+          "option_ids": [
+            "2406044911",
+            "2406044912"
+          ],
+          "price": {
+            "amount_cents": 2330,
+            "currency": "USD",
+            "display": "$23.30"
+          }
+        }
+      ],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088502": {
+      "name": "Bun Thit Nuong",
+      "groups": [
+        {
+          "id": "428257979",
+          "name": "Bun Additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": "Select up to 3",
+          "options": [
+            {
+              "id": "2406044757",
+              "item_id": null,
+              "name": "Add Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044756",
+              "item_id": null,
+              "name": "Add Grilled Shrimp",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044755",
+              "item_id": null,
+              "name": "Add Vegetarian Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [
+        {
+          "label": "#1 • Ordered recently by 10+ others",
+          "option_ids": [
+            "2406044756",
+            "2406044757"
+          ],
+          "price": {
+            "amount_cents": 2535,
+            "currency": "USD",
+            "display": "$25.35"
+          }
+        }
+      ],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088500": {
+      "name": "5-Spice Chicken Bun",
+      "groups": [
+        {
+          "id": "428257979",
+          "name": "Bun Additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": "Select up to 3",
+          "options": [
+            {
+              "id": "2406044757",
+              "item_id": null,
+              "name": "Add Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044756",
+              "item_id": null,
+              "name": "Add Grilled Shrimp",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044755",
+              "item_id": null,
+              "name": "Add Vegetarian Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [
+        {
+          "label": "#1 • Ordered recently by 10+ others",
+          "option_ids": [
+            "2406044756",
+            "2406044757"
+          ],
+          "price": {
+            "amount_cents": 2535,
+            "currency": "USD",
+            "display": "$25.35"
+          }
+        }
+      ],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "2819350429": {
+      "name": "5-Spice Chicken Banh Mi",
+      "groups": [
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "2819348000": {
+      "name": "Grilled Pork Banh Mi",
+      "groups": [
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088538": {
+      "name": "Spring Rolls",
+      "groups": [
+        {
+          "id": "4445444538",
+          "name": "Vegetarian Option",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": "Select up to 1",
+          "options": [
+            {
+              "id": "15020161598",
+              "item_id": null,
+              "name": "Vegetarian",
+              "price": {
+                "amount_cents": 0,
+                "currency": "USD",
+                "display": null
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088542": {
+      "name": "Vietnamese Iced Coffee",
+      "groups": [],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088507": {
+      "name": "Lemongrass Pork Shoulder",
+      "groups": [
+        {
+          "id": "428258077",
+          "name": "Rice plate additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "2406044912",
+              "item_id": null,
+              "name": "Add Fried Egg",
+              "price": {
+                "amount_cents": 300,
+                "currency": "USD",
+                "display": "+$3.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044911",
+              "item_id": null,
+              "name": "Add Cha Gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "15019006796",
+              "item_id": null,
+              "name": "Add Veg Cha gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "428258006",
+          "name": "Rice Option",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": "Select up to 1",
+          "options": [
+            {
+              "id": "2406044824",
+              "item_id": null,
+              "name": "Brown Rice",
+              "price": {
+                "amount_cents": 100,
+                "currency": "USD",
+                "display": "+$1.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [
+        {
+          "label": "#1 • Ordered recently by 5+ others",
+          "option_ids": [
+            "2406044911",
+            "2406044912"
+          ],
+          "price": {
+            "amount_cents": 2330,
+            "currency": "USD",
+            "display": "$23.30"
+          }
+        }
+      ],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088541": {
+      "name": "Thai Iced Tea",
+      "groups": [],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088503": {
+      "name": "Lemongrass Tofu",
+      "groups": [
+        {
+          "id": "428258077",
+          "name": "Rice plate additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "2406044912",
+              "item_id": null,
+              "name": "Add Fried Egg",
+              "price": {
+                "amount_cents": 300,
+                "currency": "USD",
+                "display": "+$3.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044911",
+              "item_id": null,
+              "name": "Add Cha Gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "15019006796",
+              "item_id": null,
+              "name": "Add Veg Cha gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "428258006",
+          "name": "Rice Option",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": "Select up to 1",
+          "options": [
+            {
+              "id": "2406044824",
+              "item_id": null,
+              "name": "Brown Rice",
+              "price": {
+                "amount_cents": 100,
+                "currency": "USD",
+                "display": "+$1.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088497": {
+      "name": "Vegetarian Bun",
+      "groups": [
+        {
+          "id": "428257979",
+          "name": "Bun Additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": "Select up to 3",
+          "options": [
+            {
+              "id": "2406044757",
+              "item_id": null,
+              "name": "Add Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044756",
+              "item_id": null,
+              "name": "Add Grilled Shrimp",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044755",
+              "item_id": null,
+              "name": "Add Vegetarian Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "2819350971": {
+      "name": "Grilled Ribeye Banh Mi",
+      "groups": [
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088526": {
+      "name": "Combo Banh Mi",
+      "groups": [
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "44374766520": {
+      "name": "Xiu Mai Banh Mi",
+      "groups": [
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "2819349116": {
+      "name": "Xa Xiu Pork Banh Mi",
+      "groups": [
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "2819351546": {
+      "name": "Turmeric Catfish Banh Mi",
+      "groups": [
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "2819352351": {
+      "name": "Lemongrass Tofu Banh Mi",
+      "groups": [
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088499": {
+      "name": "Bun Bo Nuong",
+      "groups": [
+        {
+          "id": "428257979",
+          "name": "Bun Additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": "Select up to 3",
+          "options": [
+            {
+              "id": "2406044757",
+              "item_id": null,
+              "name": "Add Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044756",
+              "item_id": null,
+              "name": "Add Grilled Shrimp",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044755",
+              "item_id": null,
+              "name": "Add Vegetarian Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088496": {
+      "name": "Cha Ca La Vong",
+      "groups": [
+        {
+          "id": "428257979",
+          "name": "Bun Additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": "Select up to 3",
+          "options": [
+            {
+              "id": "2406044757",
+              "item_id": null,
+              "name": "Add Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044756",
+              "item_id": null,
+              "name": "Add Grilled Shrimp",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044755",
+              "item_id": null,
+              "name": "Add Vegetarian Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088501": {
+      "name": "Bun Tom",
+      "groups": [
+        {
+          "id": "428257979",
+          "name": "Bun Additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": "Select up to 3",
+          "options": [
+            {
+              "id": "2406044757",
+              "item_id": null,
+              "name": "Add Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044756",
+              "item_id": null,
+              "name": "Add Grilled Shrimp",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044755",
+              "item_id": null,
+              "name": "Add Vegetarian Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088498": {
+      "name": "Bun Ga Xa",
+      "groups": [
+        {
+          "id": "428257979",
+          "name": "Bun Additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": "Select up to 3",
+          "options": [
+            {
+              "id": "2406044757",
+              "item_id": null,
+              "name": "Add Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044756",
+              "item_id": null,
+              "name": "Add Grilled Shrimp",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044755",
+              "item_id": null,
+              "name": "Add Vegetarian Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088495": {
+      "name": "Bun Cha Ha Noi",
+      "groups": [
+        {
+          "id": "428257979",
+          "name": "Bun Additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": "Select up to 3",
+          "options": [
+            {
+              "id": "2406044757",
+              "item_id": null,
+              "name": "Add Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044756",
+              "item_id": null,
+              "name": "Add Grilled Shrimp",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044755",
+              "item_id": null,
+              "name": "Add Vegetarian Cha Gio Roll",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088509": {
+      "name": "Chili-Lemongrass Chicken",
+      "groups": [
+        {
+          "id": "428258077",
+          "name": "Rice plate additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "2406044912",
+              "item_id": null,
+              "name": "Add Fried Egg",
+              "price": {
+                "amount_cents": 300,
+                "currency": "USD",
+                "display": "+$3.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044911",
+              "item_id": null,
+              "name": "Add Cha Gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "15019006796",
+              "item_id": null,
+              "name": "Add Veg Cha gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "428258006",
+          "name": "Rice Option",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": "Select up to 1",
+          "options": [
+            {
+              "id": "2406044824",
+              "item_id": null,
+              "name": "Brown Rice",
+              "price": {
+                "amount_cents": 100,
+                "currency": "USD",
+                "display": "+$1.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [
+        {
+          "label": "#1 • Ordered recently by 10+ others",
+          "option_ids": [
+            "2406044912",
+            "2406044824"
+          ],
+          "price": {
+            "amount_cents": 2080,
+            "currency": "USD",
+            "display": "$20.80"
+          }
+        }
+      ],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088513": {
+      "name": "Caramelized Claypot Catfish",
+      "groups": [
+        {
+          "id": "428258077",
+          "name": "Rice plate additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "2406044912",
+              "item_id": null,
+              "name": "Add Fried Egg",
+              "price": {
+                "amount_cents": 300,
+                "currency": "USD",
+                "display": "+$3.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044911",
+              "item_id": null,
+              "name": "Add Cha Gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "15019006796",
+              "item_id": null,
+              "name": "Add Veg Cha gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "428258006",
+          "name": "Rice Option",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": "Select up to 1",
+          "options": [
+            {
+              "id": "2406044824",
+              "item_id": null,
+              "name": "Brown Rice",
+              "price": {
+                "amount_cents": 100,
+                "currency": "USD",
+                "display": "+$1.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "2819335062": {
+      "name": "Grilled Ribeye",
+      "groups": [
+        {
+          "id": "428258077",
+          "name": "Rice plate additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "2406044912",
+              "item_id": null,
+              "name": "Add Fried Egg",
+              "price": {
+                "amount_cents": 300,
+                "currency": "USD",
+                "display": "+$3.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044911",
+              "item_id": null,
+              "name": "Add Cha Gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "15019006796",
+              "item_id": null,
+              "name": "Add Veg Cha gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [
+        {
+          "label": "#1 • Ordered recently by 10+ others",
+          "option_ids": [
+            "2406044911",
+            "2406044912"
+          ],
+          "price": {
+            "amount_cents": 2595,
+            "currency": "USD",
+            "display": "$25.95"
+          }
+        }
+      ],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088512": {
+      "name": "Caramelized Claypot Shrimp",
+      "groups": [
+        {
+          "id": "428258077",
+          "name": "Rice plate additions",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 3,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "2406044912",
+              "item_id": null,
+              "name": "Add Fried Egg",
+              "price": {
+                "amount_cents": 300,
+                "currency": "USD",
+                "display": "+$3.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2406044911",
+              "item_id": null,
+              "name": "Add Cha Gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "15019006796",
+              "item_id": null,
+              "name": "Add Veg Cha gio",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "428258006",
+          "name": "Rice Option",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": "Select up to 1",
+          "options": [
+            {
+              "id": "2406044824",
+              "item_id": null,
+              "name": "Brown Rice",
+              "price": {
+                "amount_cents": 100,
+                "currency": "USD",
+                "display": "+$1.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088539": {
+      "name": "Cha Gio",
+      "groups": [
+        {
+          "id": "4445444538",
+          "name": "Vegetarian Option",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": "Select up to 1",
+          "options": [
+            {
+              "id": "15020161598",
+              "item_id": null,
+              "name": "Vegetarian",
+              "price": {
+                "amount_cents": 0,
+                "currency": "USD",
+                "display": null
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088538",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088538",
+              "item_id": "214088538",
+              "name": "Spring Rolls",
+              "price": {
+                "amount_cents": 1470,
+                "currency": "USD",
+                "display": "+$14.70"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "3343595227": {
+      "name": "Tin Rolls",
+      "groups": [],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088535": {
+      "name": "Papaya Salad",
+      "groups": [
+        {
+          "id": "4445444538",
+          "name": "Vegetarian Option",
+          "kind": "add_on",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": "Select up to 1",
+          "options": [
+            {
+              "id": "15020161598",
+              "item_id": null,
+              "name": "Vegetarian",
+              "price": {
+                "amount_cents": 0,
+                "currency": "USD",
+                "display": null
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088542",
+          "name": "Recommended Beverages",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 4,
+          "rule_text": "Choose up to 4",
+          "options": [
+            {
+              "id": "214088542",
+              "item_id": "214088542",
+              "name": "Vietnamese Iced Coffee",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088541",
+              "item_id": "214088541",
+              "name": "Thai Iced Tea",
+              "price": {
+                "amount_cents": 550,
+                "currency": "USD",
+                "display": "+$5.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10547675643",
+              "item_id": "10547675643",
+              "name": "Diet Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "10551604511",
+              "item_id": "10551604511",
+              "name": "Pepsi",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088540",
+          "name": "Recommended Sides And Apps",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 5,
+          "rule_text": "Choose up to 5",
+          "options": [
+            {
+              "id": "214088540",
+              "item_id": "214088540",
+              "name": "Hue Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "3343595227",
+              "item_id": "3343595227",
+              "name": "Tin Rolls",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "214088539",
+              "item_id": "214088539",
+              "name": "Cha Gio",
+              "price": {
+                "amount_cents": 1575,
+                "currency": "USD",
+                "display": "+$15.75"
+              },
+              "has_sub_options": true
+            },
+            {
+              "id": "2819357048",
+              "item_id": "2819357048",
+              "name": "Side Jasmine Rice",
+              "price": {
+                "amount_cents": 350,
+                "currency": "USD",
+                "display": "+$3.50"
+              },
+              "has_sub_options": false
+            },
+            {
+              "id": "2819357496",
+              "item_id": "2819357496",
+              "name": "Side Brown Rice",
+              "price": {
+                "amount_cents": 400,
+                "currency": "USD",
+                "display": "+$4.00"
+              },
+              "has_sub_options": false
+            }
+          ]
+        },
+        {
+          "id": "recommended_option_214088491",
+          "name": "Recommended Dessert",
+          "kind": "upsell",
+          "min_choices": 0,
+          "max_choices": 1,
+          "rule_text": null,
+          "options": [
+            {
+              "id": "214088491",
+              "item_id": "214088491",
+              "name": "Vietnamese Banana Cake",
+              "price": {
+                "amount_cents": 785,
+                "currency": "USD",
+                "display": "+$7.85"
+              },
+              "has_sub_options": false
+            }
+          ]
+        }
+      ],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "2819357496": {
+      "name": "Side Brown Rice",
+      "groups": [],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "2819357048": {
+      "name": "Side Jasmine Rice",
+      "groups": [],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "214088491": {
+      "name": "Vietnamese Banana Cake",
+      "groups": [],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "10547675643": {
+      "name": "Diet Pepsi",
+      "groups": [],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    },
+    "10551604511": {
+      "name": "Pepsi",
+      "groups": [],
+      "popular_combinations": [],
+      "special_instructions": {
+        "max_length": 500
+      }
+    }
+  }
+}
