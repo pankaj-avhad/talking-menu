@@ -1,6 +1,9 @@
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
+  // A self-contained server (.next/standalone) for the Dockerfile, which
+  // InstaCloud builds. Vercel builds its own way and ignores this.
+  output: "standalone",
   images: {
     remotePatterns: [
       // Photos in data/menu.json come from DoorDash's image CDN.
@@ -14,7 +17,7 @@ const nextConfig: NextConfig = {
     ],
   },
   async redirects() {
-    // The menu is the only page so far.
+    // The menu is the home page.
     return [{ source: "/", destination: "/menu", permanent: false }]
   },
 }
